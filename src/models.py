@@ -13,5 +13,13 @@ class Flaskr(db.Model):
         self.title = title
         self.text = text
 
+    @classmethod
+    def get_all_posts(cls):
+        return db.session.query(cls)
+
     def __repr__(self):
         return '<title {}>'.format(self.body)
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
